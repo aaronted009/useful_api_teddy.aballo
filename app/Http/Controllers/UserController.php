@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Models\Module;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -62,6 +65,24 @@ class UserController extends Controller
         $deleted_user = $user->delete();
         if ($deleted_user) {
             return response(new UserResource($user), 204);
+        }
+    }
+
+    public function activateModule($id)
+    {
+        try {
+            $module_to_activate = Module::findOrFail($id);
+            $all_modules = Module::all();
+            $user = Auth::user();
+            foreach ($all_modules as $module) {
+                if ($module->id == $module_to_activate->id) {
+                    $user->modules()->attach($module_to_activate->id, ['active' => true]);
+                }
+            }
+        } catch (Exception $exc) {
+            return response()->json([
+                'message' => $exc->getMessage(),
+            ], 404);
         }
     }
 }

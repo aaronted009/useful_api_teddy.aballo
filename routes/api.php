@@ -13,4 +13,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('users', UserController::class)->except(['store']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/modules', [ModuleController::class, 'index']);
+    Route::post('/modules/{id}/activate', [UserController::class, 'activateModule']);
 });
