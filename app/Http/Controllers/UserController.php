@@ -85,4 +85,26 @@ class UserController extends Controller
             ], 404);
         }
     }
+
+
+    public function deactivateModule($id)
+    {
+        try {
+            $module_to_deactivate = Module::findOrFail($id);
+            $all_modules = Module::all();
+            $user = Auth::user();
+            foreach ($all_modules as $module) {
+                if ($module->id == $module_to_deactivate->id) {
+                    $user->modules()->detach($module_to_deactivate->id);
+                    return response()->json([
+                        "message" => "Module deactivated successfully"
+                    ], 200);
+                }
+            }
+        } catch (Exception $exc) {
+            return response()->json([
+                'message' => $exc->getMessage(),
+            ], 404);
+        }
+    }
 }
