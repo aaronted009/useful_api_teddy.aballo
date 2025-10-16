@@ -78,7 +78,7 @@ class UserController extends Controller
                 if ($module->id == $module_to_activate->id) {
                     $user->modules()->attach($module_to_activate->id, ['active' => true]);
                     return response()->json([
-                        "message" => "Module activated successfully"
+                        "message" => "Module activated"
                     ], 200);
                 }
             }
@@ -100,7 +100,7 @@ class UserController extends Controller
                 if ($module->id == $module_to_deactivate->id) {
                     $user->modules()->detach($module_to_deactivate->id);
                     return response()->json([
-                        "message" => "Module deactivated successfully"
+                        "message" => "Module deactivated"
                     ], 200);
                 }
             }
