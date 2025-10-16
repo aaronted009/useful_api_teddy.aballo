@@ -77,6 +77,9 @@ class UserController extends Controller
             foreach ($all_modules as $module) {
                 if ($module->id == $module_to_activate->id) {
                     $user->modules()->attach($module_to_activate->id, ['active' => true]);
+                    return response()->json([
+                        "message" => "Module activated successfully"
+                    ], 200);
                 }
             }
         } catch (Exception $exc) {
