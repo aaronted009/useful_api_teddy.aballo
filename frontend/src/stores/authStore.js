@@ -56,12 +56,12 @@ export const useAuthStore = defineStore('auth', {
         this.token = data.token
         // Set the auth token for future requests
         this.model.setAuthToken(data.token)
-        toast.success('Vous êtes connecté', { timeout: 2000 })
+        toast.success("You're logged in", { timeout: 2000 })
         return data
       } catch (error) {
         console.error('Error: ', error)
         this.error = this.model.error
-        toast.error('Aucun compte trouvé', { timeout: 2000 })
+        toast.error('Wrong ids', { timeout: 2000 })
       }
     },
 

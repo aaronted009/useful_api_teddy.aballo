@@ -60,7 +60,7 @@ export default class Auth {
         email: ids.email.trim(),
         password: ids.password,
       }
-      const response = await this.api.post('/login', loginIds)
+      const response = await this.api.post('/api/login', loginIds)
       const data = response.data
       console.log(data)
       return data
