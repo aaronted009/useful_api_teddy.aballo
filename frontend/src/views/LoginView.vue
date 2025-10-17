@@ -1,8 +1,9 @@
 <script setup>
 import HeaderComponent from '@/components/HeaderComponent.vue'
+import LoginComponent from '@/components/LoginComponent.vue'
 </script>
 
 <template>
   <HeaderComponent />
-  Here the login form
+  <LoginComponent />
 </template>
