@@ -76,7 +76,8 @@ export default class Auth {
    */
   async logout() {
     try {
-      const response = await this.api.post('/logout')
+      this.setAuthToken(this.token)
+      const response = await this.api.post('/api/logout')
       const data = response.data
       console.log(data)
       return data
