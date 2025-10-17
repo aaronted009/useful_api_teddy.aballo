@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import HeaderComponent from '@/components/HeaderComponent.vue'
+</script>
 
 <template>
-  <p class="text-3xl text-black-600">Hi fam !</p>
+  <HeaderComponent />
 </template>
